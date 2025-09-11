@@ -1,7 +1,8 @@
 class IntegerArithmetic:
     def __init__(self):
         self.operations = {
-            "addition": self.addition
+            "addition": self.addition,
+            "subtraction": self.subtraction
         }
 
     def addition(self, exercise):
@@ -10,7 +11,14 @@ class IntegerArithmetic:
         result = x + y
         
         print(f"Result of addition: {result}")
-        print("Also this works.")
+        return {"answer": result}
+    
+    def subtraction(self, exercise):
+        x = exercise["x"]
+        y= exercise["y"]
+        result = x - y
+        
+        print(f"Result of substraction: {result}")
         return {"answer": result}
 
     def findOperation(self, exercise):

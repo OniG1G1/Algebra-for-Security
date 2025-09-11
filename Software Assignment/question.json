@@ -1,6 +1,6 @@
 {
   "type": "integer_arithmetic",
-  "operation": "addition",
+  "operation": "subtraction",
   "x": 3,
   "y": 4
 
