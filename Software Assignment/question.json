@@ -1,0 +1,7 @@
+{
+  "type": "integer_arithmetic",
+  "operation": "addition",
+  "x": 3,
+  "y": 4
+
+}
