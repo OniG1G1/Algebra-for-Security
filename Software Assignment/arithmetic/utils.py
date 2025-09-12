@@ -60,19 +60,3 @@ def compare_magnitude(x: str, y: str, radix: int) -> int:
         elif digit_x < digit_y:
             return -1
     return 0
-
-
-#Convert Python int into string representation in given radix.
-    #def format(self, num: int, radix: int) -> str:
-    #    if num == 0:
-    #        return "0"
-#
-    #    neg = num < 0
-    #    num = abs(num)
-    #    result = ""
-#
-    #    while num > 0:
-    #        result = self.DIGITS[num % radix] + result
-    #        num //= radix
-#
-    #    return "-" + result if neg else result

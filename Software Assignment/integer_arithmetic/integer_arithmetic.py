@@ -1,4 +1,4 @@
-from arithmetic.base import Arithmetic
+from arithmetic.core import Arithmetic
 from integer_arithmetic.addition import Addition
 from integer_arithmetic.subtraction import Subtraction
 
