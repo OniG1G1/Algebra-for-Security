@@ -1,7 +1,0 @@
-{
-  "type": "integer_arithmetic",
-  "operation": "subtraction",
-  "x": 3,
-  "y": 4
-
-}

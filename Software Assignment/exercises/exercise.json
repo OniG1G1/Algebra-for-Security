@@ -1,0 +1,8 @@
+{
+  "type": "integer_arithmetic",
+  "operation": "addition",
+  "x": "A0B1",
+  "y": "-B173",
+  "radix": "12"
+
+}
