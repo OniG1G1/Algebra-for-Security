@@ -38,7 +38,7 @@ def digitParse(num_str: str) -> int:
     
 def reverseDigitParse(num_int: int) -> str:
     """
-    Convert a single-digit hexadecimal integer to a hexadecimal string.
+    Convert a single-digit base 10 integer to a hexadecimal string.
     """
     num_str = ""
     if num_int == 0:
@@ -134,8 +134,9 @@ def zero_padding(x: str, y: str) -> tuple[str, str]:
         x = padding + x
     return x, y
 
-def compare(self, x: str, y: str, radix: int) -> int:
+def compare(self, x: str, y: str, radix: int) -> int: 
         """
+        NEEDS TO BE REMADE, CANT COMPARE LONGER THAN 32 BITS
         Compare two non-negative number strings.
         Returns:
             1 if x > y
@@ -144,7 +145,7 @@ def compare(self, x: str, y: str, radix: int) -> int:
         """
         x, y = zero_padding(x, y)
         for i in range(len(x)):
-            val_x = parse(x[i], radix)
+            val_x = parse(x[i], radix) 
             val_y = parse(y[i], radix)
             if val_x > val_y:
                 return 1
@@ -173,5 +174,3 @@ def compare_magnitude(x: str, y: str, radix: int) -> int:
         elif digit_x < digit_y:
             return -1
     return 0
-
-

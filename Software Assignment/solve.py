@@ -2,6 +2,8 @@
 import json
 
 from integer_arithmetic.integer_arithmetic import IntegerArithmetic
+from modular_arithmetic.modular_arithmetic import ModularArithmetic
+
 
 def solve_exercise(exercise_location: str, answer_location: str):
     with open(exercise_location, "r") as exercise_file:
@@ -22,7 +24,7 @@ def findType(type_name: str):
     if type_name == "integer_arithmetic":
         return IntegerArithmetic()
     elif type_name == "modular_arithmetic":
-        raise NotImplementedError("Modular arithmetic not implemented yet")
+        return ModularArithmetic()
     else:
         raise ValueError(f"Unknown exercise type: {type_name}")
 
