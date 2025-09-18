@@ -1,4 +1,4 @@
-from utils import zero_padding, parse, reverseParse, digitParse
+from utils import zero_padding, parse, reverseParse, digitParse, compare_magnitude
 
 def add(x: str, y: str, radix: int, negative: bool) -> str:
     """Digit-wise addition of two positive numbers in given radix."""
@@ -44,4 +44,26 @@ def divideRemainder(x: str, y: str, radix: int, negative: bool) -> str:
     "Todo"
 
 def divideQuotient(x: str, y: str, radix: int, negative: bool) -> str:
-    "Todo"
+    """Assumes x,y >= 0."""
+    remainder = ""
+    q = ""
+    for i in range(len(x)):
+        remainder += x[i]
+        if (compare_magnitude(remainder, y) == -1):
+            q += "0"
+            continue
+        q += divideIntermediate(remainder, y, radix, False)
+        remainder = subtract(remainder, multiply(q[len(q) - 1], y), radix, False)
+    
+    return "-" + q if negative else q
+
+def divideIntermediate(x: str, y: str, radix: int, negative: bool) -> str:
+    """Assumes x,y >= 0."""
+    x, y = zero_padding(x, y)
+    q = 0
+    while (compare_magnitude(x, y, radix) >= 0):
+        x = zero_padding(subtract(x, y, radix, False), y)
+        q += 1
+    
+    q = str(q)
+    return "-" + q if negative else q
