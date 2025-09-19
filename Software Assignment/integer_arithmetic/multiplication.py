@@ -1,5 +1,4 @@
-from arithmetic.utils import compare_magnitude
-from arithmetic.core import add, subtract
+from arithmetic.core import multiply
 
 class Multiplication:
     def execute(self, exercise: dict) -> dict:
@@ -39,7 +38,7 @@ class Multiplication:
         Case: positive + positive.
         (+x) * (+y) = x * y
         """
-        return add(x, y, radix, negative=False)
+        return multiply(x, y, radix, negative=False)
 
     def _neg_neg(self, x: str, y: str, radix: int) -> str:
         """
@@ -47,29 +46,19 @@ class Multiplication:
         (-x) * (-y) = x * y
         Equivalent to pos_pos
         """
-        return add(x, y, radix, negative=True)
+        return multiply(x, y, radix, negative=False)
 
     def _pos_neg(self, x: str, y: str, radix: int) -> str:
         """
         Case: positive + negative.
-        (x) + (-y) = -(x * y)
+        (+x) * (-y) = -(x * y)
         """
-        # strip any leading signs
-        x = x.lstrip('-')
-        y = y.lstrip('-')
-        
-        cmp = compare_magnitude(x, y, radix)
-        if cmp == 0:
-            return "0"
-        elif cmp > 0:  # x > y → result positive
-            return subtract(x, y, radix, negative=False)
-        else:  # y > x → result negative
-            return subtract(y, x, radix, negative=True)
-
+        return multiply(x, y, radix, negative=True)
+    
     def _neg_pos(self, x: str, y: str, radix: int) -> str:
         """
         Case: negative + postive.
-        (-x) + (y) = -(x * y)
+        (-x) * (+y) = -(x * y)
         Equivalent to pos_neg
         """
-        return self._pos_neg(y, x, radix)
+        return multiply(x, y, radix, negative=True)
