@@ -40,30 +40,39 @@ def subtract(x: str, y: str, radix: int, negative: bool) -> str:
         sum_string = ""
     return "-" + result if negative else result
 
-def divideRemainder(x: str, y: str, radix: int, negative: bool) -> str:
-    "Todo"
 
-def divideQuotient(x: str, y: str, radix: int, negative: bool) -> str:
-    """Assumes x,y >= 0."""
+def divide(x: str, y: str, radix: int, negative: bool) -> tuple[str, str]:
+    """Assumes x,y >= 0.
+       Returns a tuple result = (q, remainder)
+       result[0] = q; result[1] = remainder"""
     remainder = ""
     q = ""
     for i in range(len(x)):
         remainder += x[i]
-        if (compare_magnitude(remainder, y) == -1):
+        if (compare_magnitude(remainder, y, radix) == -1):
             q += "0"
             continue
-        q += divideIntermediate(remainder, y, radix, False)
-        remainder = subtract(remainder, multiply(q[len(q) - 1], y), radix, False)
+        inter_tuple = divideIntermediate(remainder, y, radix, False)
+        q += inter_tuple[0]
+        remainder = inter_tuple[1]
     
-    return "-" + q if negative else q
+    if (negative):
+        q = "-" + q
+    
+    return (q, remainder)
 
-def divideIntermediate(x: str, y: str, radix: int, negative: bool) -> str:
+def divideIntermediate(x: str, y: str, radix: int, negative: bool) -> tuple[str, str]:
     """Assumes x,y >= 0."""
     x, y = zero_padding(x, y)
     q = 0
     while (compare_magnitude(x, y, radix) >= 0):
-        x = zero_padding(subtract(x, y, radix, False), y)
+        x = zero_padding(subtract(x, y, radix, False), y)[0]
         q += 1
     
     q = str(q)
-    return "-" + q if negative else q
+    if (negative):
+        q = "-" + q
+    
+    return (q, x)
+
+print(divide("543", "38", 10, False))
