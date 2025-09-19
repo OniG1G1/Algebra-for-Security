@@ -74,5 +74,3 @@ def divideIntermediate(x: str, y: str, radix: int, negative: bool) -> tuple[str,
         q = "-" + q
     
     return (q, x)
-
-print(divide("543", "38", 10, False))
