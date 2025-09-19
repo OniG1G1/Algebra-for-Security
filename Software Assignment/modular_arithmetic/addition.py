@@ -1,5 +1,5 @@
 from arithmetic.utils import compare_magnitude
-from modulus.core import modularAdd, modularSubtract
+from modulus.core import moduluarAdd, moduluarSubtract
 
 class Addition:
     def execute(self, exercise: dict) -> dict:
@@ -40,14 +40,14 @@ class Addition:
         Case: positive + positive.
         (+x) + (+y) = x + y
         """
-        return modularAdd(x, y, radix, negative=False, m=m)
+        return moduluarAdd(x, y, radix, negative=False, m=m)
 
     def _neg_neg(self, x: str, y: str, radix: int, m: int) -> str:
         """
         Case: negative + negative.
         (-x) + (-y) = - (x + y)
         """
-        return modularAdd(x, y, radix, negative=True, m=m)
+        return moduluarAdd(x, y, radix, negative=True, m=m)
 
     def _pos_neg(self, x: str, y: str, radix: int, m: int) -> str:
         """
@@ -62,9 +62,9 @@ class Addition:
         if cmp == 0:
             return "0"
         elif cmp > 0:  # x > y → result positive
-            return modularSubtract(x, y, radix, negative=False, m=m)
+            return moduluarSubtract(x, y, radix, negative=False, m=m)
         else:  # y > x → result negative
-            return modularSubtract(y, x, radix, negative=True, m=m)
+            return moduluarSubtract(y, x, radix, negative=True, m=m)
 
     def _neg_pos(self, x: str, y: str, radix: int, m: int) -> str:
         """
