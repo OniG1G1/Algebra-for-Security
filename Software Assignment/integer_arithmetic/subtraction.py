@@ -10,7 +10,10 @@ class Subtraction:
         x = exercise["x"]
         y = exercise["y"]
         radix = int(exercise["radix"])
-
+        result = self.run(x, y, radix)
+        return {"answer": result}
+    
+    def run(self, x: str, y: str, radix: int) -> str:
         sign_x = '-' if x.startswith('-') else '+'
         sign_y = '-' if y.startswith('-') else '+'
 
@@ -26,9 +29,7 @@ class Subtraction:
         }
 
         handler = router[(sign_x, sign_y)]
-        result = handler(x_val, y_val, radix)
-
-        return {"answer": result}
+        return handler(x_val, y_val, radix)
 
     # -----------------------------
     # Cases

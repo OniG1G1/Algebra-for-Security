@@ -13,6 +13,7 @@ def solve_exercise(exercise_location: str, answer_location: str):
     print(f"Using type: {type(exercise_type).__name__}")
 
     answer = exercise_type.findOperation(exercise)
+    print("DEBUG: answer returned:", answer)
 
     with open(answer_location, "w") as answer_file:
         json.dump(answer, answer_file, indent=4)

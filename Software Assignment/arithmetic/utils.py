@@ -161,14 +161,17 @@ def compare_magnitude(x: str, y: str, radix: int) -> int:
         -1 if x < y
         0 if equal
     """
+    x = x.lstrip("0") or "0"
+    y = y.lstrip("0") or "0"
+
     if len(x) > len(y):
         return 1
     if len(x) < len(y):
         return -1
 
     for i in range(len(x)):
-        digit_x = int(x[i], radix)
-        digit_y = int(y[i], radix)
+        digit_x = parse(x[i], radix)
+        digit_y = parse(y[i], radix)
         if digit_x > digit_y:
             return 1
         elif digit_x < digit_y:

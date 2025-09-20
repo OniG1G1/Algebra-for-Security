@@ -1,8 +1,8 @@
 {
   "type": "integer_arithmetic",
-  "operation": "subtraction",
-  "x": "-10",
-  "y": "-8",
-  "radix": "10"
-
+  "operation": "multiplication_karatsuba",
+  "radix": 10,
+  "x": "-7",
+  "y": "8",
+  "points": 0.5
 }

@@ -1,9 +1,9 @@
-from arithmetic.core import multiply
+from arithmetic.core import divide
 
-class Multiplication:
+class Division:
     def execute(self, exercise: dict) -> dict:
         """
-        Main entry point for Multiplication. Handles sign routing.
+        Main entry point for Division. Handles sign routing.
         """
         print(f"Executing operation: {type(self).__name__}")
         x = exercise["x"]
@@ -29,6 +29,7 @@ class Multiplication:
 
         handler = router[(sign_x, sign_y)]
         return handler(x_val, y_val, radix)
+    
 
     # -----------------------------
     # Cases
@@ -39,7 +40,7 @@ class Multiplication:
         Case: positive + positive.
         (+x) * (+y) = x * y
         """
-        return multiply(x, y, radix, negative=False)
+        return divide(x, y, radix, negative=False)
 
     def _neg_neg(self, x: str, y: str, radix: int) -> str:
         """
@@ -47,14 +48,14 @@ class Multiplication:
         (-x) * (-y) = x * y
         Equivalent to pos_pos
         """
-        return multiply(x, y, radix, negative=False)
+        return divide(x, y, radix, negative=False)
 
     def _pos_neg(self, x: str, y: str, radix: int) -> str:
         """
         Case: positive + negative.
         (+x) * (-y) = -(x * y)
         """
-        return multiply(x, y, radix, negative=True)
+        return divide(x, y, radix, negative=True)
     
     def _neg_pos(self, x: str, y: str, radix: int) -> str:
         """
@@ -62,12 +63,15 @@ class Multiplication:
         (-x) * (+y) = -(x * y)
         Equivalent to pos_neg
         """
-        return multiply(x, y, radix, negative=True)
+        return divide(x, y, radix, negative=True)
     
-    """def execute(self, exercise: dict) -> dict:
+    """
+
+    def execute(self, exercise: dict) -> dict:
+    
+        Main entry point for division. Handles sign routing.
         
-        Main entry point for multiplication. Handles sign routing.
-        
+
         print(f"Executing operation: {type(self).__name__}")
         x = exercise["x"]
         y = exercise["y"]

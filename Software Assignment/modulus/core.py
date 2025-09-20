@@ -1,30 +1,33 @@
-from arithmetic.core import add, subtract, multiply, karatsuba, divideRemainder
+from arithmetic.core import add, subtract, multiply, karatsuba, divide
 
-def modularReduction(num_str: str, radix: int, negative: bool, m:int) -> int:
+def modularReduction(num_str: str, radix: int, negative: bool, m:str) -> int:
     "Uses digit-wise division to find the remainder between a value and modulus m."
-    x = divideRemainder(num_str, radix, m, negative)
-    return str(x)
+    x = divide(num_str, m, radix, negative)[1]
+    return x.lstrip("0") or "0"
 
-def modularMultiply(x: str, y: str, radix: int, negative: bool, m: int):
+def modularMultiply(x: str, y: str, radix: int, negative: bool, m: str):
     "Multiplies two values in modulo m using primary school method"
     x = modularReduction(x, radix, m, False, m)
     y = modularReduction(y, radix, m, False, m)
     z = multiply(x, y, radix, negative)
     return modularReduction(z, radix, m, False, m)
 
-def modularKaratsuba(x: str, y: str, radix: int, negative: bool, m: int):
+def modularKaratsuba(x: str, y: str, radix: int, negative: bool, m: str):
     "Multiplies two values in modulo m using karatsuba method"
     x = modularReduction(x, radix, m, False, m)
     y = modularReduction(y, radix, m, False, m)
     z = karatsuba(x, y, radix, negative)
     return modularReduction(z, radix, m, False, m)
 
-def moduluarAdd(x: str, y: str, radix: int, negative: bool, m: int) -> str:
+def modularAdd(x: str, y: str, radix: int, negative: bool, m: str) -> str:
     """Digit-wise addition of two positive numbers in given radix in modulo m."""
     z = add(x, y, radix, negative)
-    return modularReduction(z, radix, m)
+    return modularReduction(z, radix, False, m)
 
-def moduluarSubtract(x: str, y: str, radix: int, negative: bool, modulo: int) -> str:
+def modularSubtract(x: str, y: str, radix: int, negative: bool, m: str) -> str:
     """Digit-wise subtraction: assumes x >= y, both positive in modulo m."""
-    z = subtract(x, y, radix, negative)
-    return modularReduction(z, radix, modulo)
+    z = subtract(x, y, radix, False)
+    if z.startswith("-"):
+        # add modulus to z to get it positive
+        z = add(z[1:], m, radix, False)  # remove minus and add modulus
+    return modularReduction(z, radix, False, m)
