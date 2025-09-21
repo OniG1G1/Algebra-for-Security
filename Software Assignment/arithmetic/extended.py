@@ -1,10 +1,8 @@
 from integer_arithmetic.subtraction import subtract_raw
 from integer_arithmetic.multiplication import multiply_raw
-from integer_arithmetic.division import Division
+from integer_arithmetic.division import division_raw
 
 def extendedEuclidean(a: str, b: str, radix: int) -> tuple[str, str, str]:
-    "First creates objects of the exercise classes, so that negatives and positives are dealt with, "
-    div = Division()
 
     "Set up extended Euclidean table values for first two rows"
     r0, r1 = a,b
@@ -17,7 +15,7 @@ def extendedEuclidean(a: str, b: str, radix: int) -> tuple[str, str, str]:
     
     while r1 != "0":
         "Divide a and b, and set them to q and the newest r (r2)"
-        q, r2 = div.run(r0, r1, radix)
+        q, r2 = division_raw(r0, r1, radix)
 
         "x2 = x0-q*x1, must pass as dictionary to go through router"
         q_x1 = multiply_raw(q, x1, radix)

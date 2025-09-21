@@ -1,5 +1,6 @@
 {
-    "answer-a": "3",
-    "answer-b": "-4",
-    "answer-gcd": "7"
+    "answer": [
+        "-10",
+        "A"
+    ]
 }
