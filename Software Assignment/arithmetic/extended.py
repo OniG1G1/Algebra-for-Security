@@ -1,11 +1,9 @@
-from integer_arithmetic.subtraction import Subtraction
-from integer_arithmetic.multiplication import Multiplication
+from integer_arithmetic.subtraction import subtract_raw
+from integer_arithmetic.multiplication import multiply_raw
 from integer_arithmetic.division import Division
 
 def extendedEuclidean(a: str, b: str, radix: int) -> tuple[str, str, str]:
     "First creates objects of the exercise classes, so that negatives and positives are dealt with, "
-    sub = Subtraction()
-    mult = Multiplication()
     div = Division()
 
     "Set up extended Euclidean table values for first two rows"
@@ -22,12 +20,12 @@ def extendedEuclidean(a: str, b: str, radix: int) -> tuple[str, str, str]:
         q, r2 = div.run(r0, r1, radix)
 
         "x2 = x0-q*x1, must pass as dictionary to go through router"
-        q_x1 = mult.run(q, x1, radix)
-        x2 = sub.run(x0, q_x1, radix)
+        q_x1 = multiply_raw(q, x1, radix)
+        x2 = subtract_raw(x0, q_x1, radix)
 
         "y2 = y0-q*y1"
-        q_y1 = mult.run(q, y1, radix)
-        y2 = sub.run(y0, q_y1, radix)
+        q_y1 = multiply_raw(q, y1, radix)
+        y2 = subtract_raw(y0, q_y1, radix)
 
         "Shift values down for next iteration"
         r0, r1 = r1, r2

@@ -8,7 +8,7 @@ def solve_exercise(exercise_location: str, answer_location: str):
 
     load_answer(answer_location, answer)
     
-    print("Exercise solved!")
+    print("Exercise solved! \n")
     
     print_exercise(answer)
         
@@ -16,7 +16,7 @@ def solve_exercise(exercise_location: str, answer_location: str):
     
 def extract_exercise(exercise_location: str) -> dict:
     
-    print(f"Extracting exercise from: {exercise_location}...")
+    print(f"\nExtracting exercise from: {exercise_location}...")
     
     with open(exercise_location, "r") as exercise_file:
         exercise = json.load(exercise_file)

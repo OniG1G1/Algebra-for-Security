@@ -6,11 +6,10 @@ class Arithmetic:
 
     operations: dict[str, callable] = {}  # subclasses override
 
-    def findOperation(self, exercise: dict):
+    def findOperation(self, operation: str) -> callable:
         """
         Dispatch to the appropriate operation based on exercise['operation'].
         """
-        op_name = exercise.get("operation")
-        if op_name not in self.operations:
-            raise ValueError(f"Unknown operation: {op_name}")
-        return self.operations[op_name](exercise)
+        if operation not in self.operations:
+            raise ValueError(f"Unknown operation: {operation}")
+        return self.operations[operation]

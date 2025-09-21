@@ -14,17 +14,23 @@ def addition(exercise: dict) -> dict:
     y = exercise["y"]
     radix = int(exercise["radix"])
     
-    # Formatting for further computations
+    answer = add_raw(x, y, radix)
+    return {"answer": answer}
+
+def add_raw(x: str, y: str, radix: int) -> str:
     
+    # Formatting for further computations
     sign_x = '-' if x.startswith('-') else '+'
     sign_y = '-' if y.startswith('-') else '+'
+    
     # Remove signs for raw digit handling
     x_val = x[1:] if sign_x == '-' else x
     y_val = y[1:] if sign_y == '-' else y
     
     addition_case = cases[(sign_x, sign_y)]
     answer = addition_case(x_val, y_val, radix)
-    return {"answer": answer}
+    
+    return answer
 
 # -----------------------------
 # Cases

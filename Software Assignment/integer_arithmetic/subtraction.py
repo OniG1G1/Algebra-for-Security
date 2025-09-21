@@ -9,13 +9,19 @@ def subtraction(exercise: dict) -> dict:
     
     print("Executing 'subtraction' operation...")
     
-    # Extracting exercise variables
+    # Extracting exercise variables.
     x = exercise["x"]
     y = exercise["y"]
     radix = int(exercise["radix"])
     
-    # Formatting for further computations
+    answer = subtract_raw(x, y, radix)
     
+    # Wraps in a dictionary.
+    return {"answer": answer}
+
+def subtract_raw(x: str, y: str, radix: int) -> str:
+    
+    # Formatting for further computations.
     sign_x = '-' if x.startswith('-') else '+'
     sign_y = '-' if y.startswith('-') else '+'
     # Remove signs for raw digit handling
@@ -24,7 +30,8 @@ def subtraction(exercise: dict) -> dict:
     
     subtraction_case = cases[(sign_x, sign_y)]
     answer = subtraction_case(x_val, y_val, radix)
-    return {"answer": answer}
+    
+    return answer
 
 # -----------------------------
 # Cases
