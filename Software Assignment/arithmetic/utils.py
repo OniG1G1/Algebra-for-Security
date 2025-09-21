@@ -133,25 +133,6 @@ def zero_padding(x: str, y: str) -> tuple[str, str]:
         # y is longer; pad x
         x = padding + x
     return x, y
-
-def compare(self, x: str, y: str, radix: int) -> int: 
-        """
-        NEEDS TO BE REMADE, CANT COMPARE LONGER THAN 32 BITS
-        Compare two non-negative number strings.
-        Returns:
-            1 if x > y
-            0 if x == y
-           -1 if x < y
-        """
-        x, y = zero_padding(x, y)
-        for i in range(len(x)):
-            val_x = parse(x[i], radix) 
-            val_y = parse(y[i], radix)
-            if val_x > val_y:
-                return 1
-            elif val_x < val_y:
-                return -1
-        return 0
     
 def compare_magnitude(x: str, y: str, radix: int) -> int:
     """
@@ -177,3 +158,38 @@ def compare_magnitude(x: str, y: str, radix: int) -> int:
         elif digit_x < digit_y:
             return -1
     return 0
+
+def compare_numbers(x: str, y: str, radix: int) -> int:
+    """
+    Compare two non-negative integer strings in the given radix.
+
+    Args:
+        x (str): First number string.
+        y (str): Second number string.
+        radix (int): Base of the number system (e.g., 2, 10, 16).
+
+    Returns:
+        int: 1 if x > y, -1 if x < y, 0 if equal.
+    """
+
+    # Normalize inputs (strip leading zeros but keep at least one digit)
+    x = x.lstrip("0") or "0"
+    y = y.lstrip("0") or "0"
+
+    # First compare by length → avoids expensive digit parsing
+    if len(x) > len(y):
+        return 1
+    if len(x) < len(y):
+        return -1
+
+    # If same length, compare digit by digit
+    for digit_x, digit_y in zip(x, y):
+        val_x = parse(digit_x, radix)
+        val_y = parse(digit_y, radix)
+        if val_x > val_y:
+            return 1
+        elif val_x < val_y:
+            return -1
+
+    return 0
+

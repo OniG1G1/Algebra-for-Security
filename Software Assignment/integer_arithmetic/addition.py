@@ -1,4 +1,4 @@
-from arithmetic.utils import compare_magnitude
+from arithmetic.utils import compare_numbers
 from arithmetic.core import add, subtract
 
 def addition(exercise: dict) -> dict:
@@ -26,6 +26,10 @@ def addition(exercise: dict) -> dict:
     answer = addition_case(x_val, y_val, radix)
     return {"answer": answer}
 
+# -----------------------------
+# Cases
+# -----------------------------
+
 def pos_pos(x: str, y: str, radix: int) -> str:
     """
     Case: positive + positive.
@@ -46,7 +50,7 @@ def pos_neg( x: str, y: str, radix: int) -> str:
         (x) + (-y) = x - y
         """
         
-        cmp = compare_magnitude(x, y, radix)
+        cmp = compare_numbers(x, y, radix)
         if cmp == 0:
             return "0"
         elif cmp > 0:  # x > y → result positive

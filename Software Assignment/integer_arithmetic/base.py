@@ -1,5 +1,5 @@
 from addition import addition
-from integer_arithmetic.subtraction import Subtraction
+from subtraction import subtraction
 from integer_arithmetic.multiplication import Multiplication
 from integer_arithmetic.karatsuba import Karatsuba
 from integer_arithmetic.extended_euclidean import ExtendedEuclidean
@@ -12,7 +12,7 @@ class IntegerArithmetic(Arithmetic):
 
     operations = {
         "addition": addition,
-        "subtraction": Subtraction().execute,
+        "subtraction": subtraction,
         "multiplication": Multiplication().execute,
         "multiplication_primary": Multiplication().execute,
         "multiplication_karatsuba": Karatsuba().execute,
