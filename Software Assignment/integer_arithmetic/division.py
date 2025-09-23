@@ -23,49 +23,9 @@ def division_raw(x: str, y: str, radix: int) -> str:
     x_val = x[1:] if sign_x == '-' else x
     y_val = y[1:] if sign_y == '-' else y
     
-    # Route to the appropriate case function
-    division_case = cases[(sign_x, sign_y)]
-    answer = division_case(x_val, y_val, radix)
+    # Result sign: same signs -> positive, different signs -> negative
+    isNegative = (sign_x != sign_y)
     
-    return answer
+    # Perform division with sign
+    return divide(x_val, y_val, radix, negative=isNegative)
 
-# -----------------------------
-# Sign-specific Division Cases
-# -----------------------------
-
-def pos_pos(x: str, y: str, radix: int) -> str:
-    """
-    Case: positive ÷ positive.
-    (+x) ÷ (+y) = x ÷ y
-    """
-    return divide(x, y, radix, negative=False)
-
-def neg_neg(x: str, y: str, radix: int) -> str:
-    """
-    Case: negative ÷ negative.
-    (-x) ÷ (-y) = x ÷ y
-    Equivalent to pos_pos
-    """
-    return divide(x, y, radix, negative=False)
-
-def pos_neg(x: str, y: str, radix: int) -> str:
-    """
-    Case: positive ÷ negative.
-    (+x) ÷ (-y) = -(x ÷ y)
-    """
-    return divide(x, y, radix, negative=True)
-
-def neg_pos(x: str, y: str, radix: int) -> str:
-    """
-    Case: negative ÷ positive.
-    (-x) ÷ (+y) = -(x ÷ y)
-    Equivalent to pos_neg
-    """
-    return divide(x, y, radix, negative=True)
-
-cases = {
-    ('+', '+'): pos_pos,
-    ('-', '-'): neg_neg,
-    ('+', '-'): pos_neg,
-    ('-', '+'): neg_pos,
-}

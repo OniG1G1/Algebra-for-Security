@@ -1,8 +1,8 @@
 {
   "type": "integer_arithmetic",
-  "operation": "division",
+  "operation": "multiplication_karatsuba",
   "radix": 16,
-  "x": "AAA",
-  "y": "-AA",
+  "x": "A01",
+  "y": "-CD",
   "points": 0.5
 }
