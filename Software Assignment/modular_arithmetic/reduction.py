@@ -1,4 +1,4 @@
-from modulus.core import modularReduction
+from modular.core import modularReduction
 
 class Reduction:
     def execute(self, exercise: dict) -> dict:

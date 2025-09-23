@@ -1,5 +1,5 @@
 from arithmetic.utils import compare_magnitude
-from modulus.core import modularAdd, modularSubtract
+from modular.core import modularAdd, modularSubtract
 
 class Subtraction:
     def execute(self, exercise: dict) -> dict:
