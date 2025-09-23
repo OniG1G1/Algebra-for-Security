@@ -1,16 +1,29 @@
 import json
+
+import time
+
 from exercise import compute_exercise, print_exercise
 
 def solve_exercise(exercise_location: str, answer_location: str):
+    
+    start_time = time.time()  # start timing
+    
     exercise = extract_exercise(exercise_location)
     
     answer = compute_exercise(exercise)
 
     load_answer(answer_location, answer)
     
+    end_time = time.time()  # end timing
+    duration = end_time - start_time
+    
     print("Exercise solved! \n")
     
     print_exercise(answer)
+    
+    print(f"Time taken: {duration:.4f} seconds")
+    
+
         
 ### --- Helper Methods --- ###
     
