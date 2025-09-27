@@ -1,9 +1,8 @@
 {
-    "type": "modular_arithmetic",
-    "operation": "addition",
+    "type": "integer_arithmetic",
+    "operation": "extended_euclidean_algorithm",
     "radix": 10,
-    "x": "12",
-    "y": "19",
-    "modulus": "10",
+    "x": "77",
+    "y": "56",
     "points": 0.5
 }
