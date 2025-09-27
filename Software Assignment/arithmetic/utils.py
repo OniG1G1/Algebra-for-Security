@@ -2,78 +2,15 @@ def digitParse(num_str: str) -> int:
     """
     Converts a single-digit in base 16 to an hexadecimal integer.
     """
-
-    if num_str == "0":
-        return 0
-    elif num_str == "1":
-        return 1
-    elif num_str == "2":
-        return 2
-    elif num_str == "3":
-        return 3
-    elif num_str == "4":
-        return 4
-    elif num_str == "5":
-        return 5
-    elif num_str == "6":
-        return 6
-    elif num_str == "7":
-        return 7
-    elif num_str == "8":
-        return 8
-    elif num_str == "9":
-        return 9
-    elif num_str == "A":
-        return 10
-    elif num_str == "B":
-        return 11
-    elif num_str == "C":
-        return 12
-    elif num_str == "D":
-        return 13
-    elif num_str == "E":
-        return 14
-    elif num_str == "F":
-        return 15
+    DIGITS = "0123456789ABCDEF"
+    return DIGITS.find(num_str) 
     
 def reverseDigitParse(num_int: int) -> str:
     """
     Convert a single-digit base 10 integer to a hexadecimal string.
     """
-    num_str = ""
-    if num_int == 0:
-        num_str = "0"
-    if num_int == 1:
-        num_str = "1"
-    if num_int == 2:
-        num_str = "2"
-    if num_int == 3:
-        num_str = "3"
-    if num_int == 4:
-        num_str = "4"
-    if num_int == 5:
-        num_str = "5"
-    if num_int == 6:
-        num_str = "6"
-    if num_int == 7:
-        num_str = "7"
-    if num_int == 8:
-        num_str = "8"
-    if num_int == 9:
-        num_str = "9"   
-    if num_int == 10:
-        num_str = "A"
-    elif num_int == 11:
-        num_str = "B"
-    elif num_int == 12:
-        num_str = "C"
-    elif num_int == 13:
-        num_str = "D"
-    elif num_int == 14:
-        num_str = "E"
-    elif num_int == 15:
-        num_str = "F"
-    return num_str
+    DIGITS = "0123456789ABCDEF"
+    return DIGITS[num_int]
     
 def parse(num_str: str, radix: int) -> int:
     """
@@ -133,25 +70,6 @@ def zero_padding(x: str, y: str) -> tuple[str, str]:
         # y is longer; pad x
         x = padding + x
     return x, y
-
-def compare(self, x: str, y: str, radix: int) -> int: 
-        """
-        NEEDS TO BE REMADE, CANT COMPARE LONGER THAN 32 BITS
-        Compare two non-negative number strings.
-        Returns:
-            1 if x > y
-            0 if x == y
-           -1 if x < y
-        """
-        x, y = zero_padding(x, y)
-        for i in range(len(x)):
-            val_x = parse(x[i], radix) 
-            val_y = parse(y[i], radix)
-            if val_x > val_y:
-                return 1
-            elif val_x < val_y:
-                return -1
-        return 0
     
 def compare_magnitude(x: str, y: str, radix: int) -> int:
     """
@@ -177,3 +95,38 @@ def compare_magnitude(x: str, y: str, radix: int) -> int:
         elif digit_x < digit_y:
             return -1
     return 0
+
+def compare_numbers(x: str, y: str, radix: int) -> int:
+    """
+    Compare two non-negative integer strings in the given radix.
+
+    Args:
+        x (str): First number string.
+        y (str): Second number string.
+        radix (int): Base of the number system (e.g., 2, 10, 16).
+
+    Returns:
+        int: 1 if x > y, -1 if x < y, 0 if equal.
+    """
+
+    # Normalize inputs (strip leading zeros but keep at least one digit)
+    x = x.lstrip("0") or "0"
+    y = y.lstrip("0") or "0"
+
+    # First compare by length → avoids expensive digit parsing
+    if len(x) > len(y):
+        return 1
+    if len(x) < len(y):
+        return -1
+
+    # If same length, compare digit by digit
+    for digit_x, digit_y in zip(x, y):
+        val_x = parse(digit_x, radix)
+        val_y = parse(digit_y, radix)
+        if val_x > val_y:
+            return 1
+        elif val_x < val_y:
+            return -1
+
+    return 0
+

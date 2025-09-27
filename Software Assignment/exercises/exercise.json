@@ -1,8 +1,8 @@
 {
-  "type": "integer_arithmetic",
-  "operation": "multiplication_karatsuba",
-  "radix": 10,
-  "x": "-7",
-  "y": "8",
-  "points": 0.5
+    "type": "integer_arithmetic",
+    "operation": "extended_euclidean_algorithm",
+    "radix": 10,
+    "x": "77",
+    "y": "56",
+    "points": 0.5
 }

@@ -1,34 +1,49 @@
-# Import built-in json library for handling input/output
 import json
 
-from integer_arithmetic.integer_arithmetic import IntegerArithmetic
-from modular_arithmetic.modular_arithmetic import ModularArithmetic
+import time
 
+from exercise import compute_exercise, print_exercise
 
 def solve_exercise(exercise_location: str, answer_location: str):
-    with open(exercise_location, "r") as exercise_file:
-        exercise = json.load(exercise_file)
+    
+    start_time = time.time()  # start timing
+    
+    exercise = extract_exercise(exercise_location)
+    
+    answer = compute_exercise(exercise)
 
-    exercise_type = findType(exercise["type"])
-    print(f"Using type: {type(exercise_type).__name__}")
+    load_answer(answer_location, answer)
+    
+    end_time = time.time()  # end timing
+    duration = end_time - start_time
+    
+    print("Exercise solved! \n")
+    
+    print_exercise(answer)
+    
+    print(f"Time taken: {duration:.4f} seconds")
+    
 
-    answer = exercise_type.findOperation(exercise)
-    print("DEBUG: answer returned:", answer)
-
-    with open(answer_location, "w") as answer_file:
-        json.dump(answer, answer_file, indent=4)
         
 ### --- Helper Methods --- ###
-        
-# TODO: Implement Modular Arithmetic
-def findType(type_name: str):
-    if type_name == "integer_arithmetic":
-        return IntegerArithmetic()
-    elif type_name == "modular_arithmetic":
-        return ModularArithmetic()
-    else:
-        raise ValueError(f"Unknown exercise type: {type_name}")
+    
+def extract_exercise(exercise_location: str) -> dict:
+    
+    print(f"\nExtracting exercise from: {exercise_location}...")
+    
+    with open(exercise_location, "r") as exercise_file:
+        exercise = json.load(exercise_file)
+        return exercise
+    
+def load_answer(answer_location: str, answer: dict) -> None:
+    
+    print(f"Loading answer into: {answer_location}...")
+    
+    with open(answer_location, "w") as answer_file:
+        json.dump(answer, answer_file, indent=4)
+
 
 ### --- Main --- ###
+
 if __name__ == "__main__":
     solve_exercise("exercises/exercise.json", "answers/answer.json")
