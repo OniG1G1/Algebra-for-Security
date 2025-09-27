@@ -31,5 +31,4 @@ def extendedEuclidean(a: str, b: str, radix: int) -> tuple[str, str, str]:
         y0, y1 = y1, y2
 
     "After loop is finished, r0 is the gcd(a,b), x0 and y0, are the coefficents such that x0*a + y0*b = r0"
-
     return (x0, y0, r0)
