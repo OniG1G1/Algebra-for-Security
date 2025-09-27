@@ -40,9 +40,12 @@ def add(x: str, y: str, radix: int, negative: bool) -> str:
         result = reverseParse(digit_sum, radix) + result
     
     # Handle leftover carry
-    if carry > 0: # Why not hardcode "1" since it will never be over
+    if carry == 1: # Why not hardcode "1" since it will never be over
         result = str(carry) + result 
-    
+
+    # Strip leading zeros if any in awnser
+    result = result.lstrip("0") or "0"
+
     return "-" + result if negative else result
 
 def subtract(x: str, y: str, radix: int, negative: bool) -> str:
@@ -190,7 +193,7 @@ def divide(x: str, y: str, radix: int, negative: bool) -> tuple[str, str]:
             continue
 
         inter_tuple = divideIntermediate(remainder, y, radix, False)
-        q += inter_tuple[0]
+        q += str(inter_tuple[0])
         remainder = inter_tuple[1]
 
     q = q.lstrip("0") or "0"
