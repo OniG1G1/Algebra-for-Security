@@ -1,5 +1,4 @@
 import json
-
 import time
 
 from exercise import compute_exercise, print_exercise
@@ -23,8 +22,6 @@ def solve_exercise(exercise_location: str, answer_location: str):
     
     print(f"Time taken: {duration:.4f} seconds")
     
-
-        
 ### --- Helper Methods --- ###
     
 def extract_exercise(exercise_location: str) -> dict:

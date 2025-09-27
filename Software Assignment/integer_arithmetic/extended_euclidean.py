@@ -2,43 +2,43 @@ from integer_arithmetic.division import division_raw
 from integer_arithmetic.multiplication import multiply_raw
 from integer_arithmetic.subtraction import subtract_raw
 
-class ExtendedEuclidean:
-    def execute(self, exercise: dict) -> dict:
-        """
-        Main entry point for the Extended Euclidean Algorithm. Handles a, b flipping.
-        """
-        print(f"Executing operation: {type(self).__name__}")
-        x = exercise["x"]
-        y = exercise["y"]
-        radix = int(exercise["radix"])
-
-        sign_x = '-' if x.startswith('-') else '+'
-        sign_y = '-' if y.startswith('-') else '+'
-
-        # Remove signs for raw digit handling
-        x_val = x[1:] if sign_x == '-' else x
-        y_val = y[1:] if sign_y == '-' else y
+def extended_euclidean(exercise: dict) -> dict:
+    """
+    Main entry point for the Extended Euclidean Algorithm. Handles a, b flipping.
+    """
     
-        a, b, d = extendedEuclidean_raw(x_val, y_val, radix)
+    print("Executing 'extended euclidean algorithm' operation...")
+    
+    # Extract input numbers and radix
+    x = exercise["x"]
+    y = exercise["y"]
+    radix = int(exercise["radix"])
+    
+    sign_x = '-' if x.startswith('-') else '+'
+    sign_y = '-' if y.startswith('-') else '+'
+    # Remove signs for raw digit handling
+    x_val = x[1:] if sign_x == '-' else x
+    y_val = y[1:] if sign_y == '-' else y
 
-        #a = "-" + a if sign_x == "-" else a
-        #b = "-" + b if sign_x == "-" else a
-        if sign_x == '-' and a != "0":
-            if not a.startswith("-"):
-                a = "-" + a
-            else:
-                a = a[1:]
-        if sign_y == '-' and b != "0":
-            if not b.startswith("-"):
-                b = "-" + b
-            else:
-                b = b[1:]
+    a, b, d = extendedEuclidean_raw(x_val, y_val, radix)
+    #a = "-" + a if sign_x == "-" else a
+    #b = "-" + b if sign_x == "-" else a
+    if sign_x == '-' and a != "0":
+        if not a.startswith("-"):
+            a = "-" + a
+        else:
+            a = a[1:]
+    if sign_y == '-' and b != "0":
+        if not b.startswith("-"):
+            b = "-" + b
+        else:
+            b = b[1:]
 
-        return {
-            "answer-a": a,
-            "answer-b": b,
-            "answer-gcd": d
-        }
+    return {
+        "answer-a": a,
+        "answer-b": b,
+        "answer-gcd": d
+    }
         
 def extendedEuclidean_raw(a: str, b: str, radix: int) -> tuple[str, str, str]:
 
