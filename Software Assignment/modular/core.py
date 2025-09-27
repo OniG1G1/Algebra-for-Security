@@ -1,5 +1,5 @@
 from arithmetic.core import add, subtract, multiply, karatsuba, divide
-from arithmetic.extended import extendedEuclidean
+from integer_arithmetic.extended_euclidean import extendedEuclidean_raw
 
 def modularReduction(num_str: str, radix: int, negative: bool, m:str) -> int:
     "Uses digit-wise division to find the remainder between a value and modulo m."
@@ -30,10 +30,10 @@ def modularSubtract(x: str, y: str, radix: int, negative: bool, m: str) -> str:
     return modularReduction(z, radix, False, m)
 
 def modularInversion(x: str, radix: int, negative: bool, m: str) -> str:
-    x1, y1, gcd = extendedEuclidean(x, m, radix)
+    x1, y1, gcd = extendedEuclidean_raw(x, m, radix) # Does this take into account sign handling
     print(x1, y1, gcd)
     if gcd != "1":
-        print("Modular inverse does not exist")
+        print("Modular inverse does not exist") # Check if correct output
     else:
         if x1.startswith("-"):
             x1 = add(x1[1:], m, radix, False)    
