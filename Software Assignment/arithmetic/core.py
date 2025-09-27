@@ -193,7 +193,7 @@ def divide(x: str, y: str, radix: int, negative: bool) -> tuple[str, str]:
             continue
 
         inter_tuple = divideIntermediate(remainder, y, radix, False)
-        q += inter_tuple[0]
+        q += str(inter_tuple[0])
         remainder = inter_tuple[1]
 
     q = q.lstrip("0") or "0"
