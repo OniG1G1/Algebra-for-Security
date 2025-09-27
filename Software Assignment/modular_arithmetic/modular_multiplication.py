@@ -6,7 +6,7 @@ def modular_multiplication(exercise: dict) -> dict:
     """
     TODO
     """
-    print("Executing 'addition' operation...")
+    print("Executing 'multiplication' operation...")
     
     # Extract input numbers and radix
     x = exercise["x"]

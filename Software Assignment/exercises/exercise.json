@@ -1,9 +1,9 @@
 {
     "type": "modular_arithmetic",
-    "operation": "multiplication",
+    "operation": "reduction",
     "radix": 10,
-    "x": "494",
+    "x": "123",
     "y": "494",
-    "modulus": "2097",
+    "modulus": "7",
     "points": 0.5
 }
