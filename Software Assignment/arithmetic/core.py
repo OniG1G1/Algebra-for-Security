@@ -214,6 +214,6 @@ def divideIntermediate(x: str, y: str, radix: int, negative: bool) -> tuple[str,
         x = subtract(x, y, radix, False).lstrip("0") or "0"
         q += 1
 
-    q_str=  "-" + q if negative else q
+    q_str=  "-" + str(q) if negative else str(q)
 
     return (q_str, x)
