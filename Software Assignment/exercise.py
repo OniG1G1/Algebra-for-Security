@@ -1,7 +1,7 @@
 import json
 
 from integer_arithmetic.base import IntegerArithmetic
-from modular_arithmetic.modular_arithmetic import ModularArithmetic
+from modular_arithmetic.base import ModularArithmetic
 
 def compute_exercise(exercise: dict) -> dict:
     

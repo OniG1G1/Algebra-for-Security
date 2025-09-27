@@ -1,8 +1,9 @@
 {
-    "type": "integer_arithmetic",
-    "operation": "subtraction",
+    "type": "modular_arithmetic",
+    "operation": "addition",
     "radix": 10,
-    "x": "1251",
-    "y": "51",
+    "x": "12",
+    "y": "19",
+    "modulus": "10",
     "points": 0.5
 }
