@@ -41,7 +41,6 @@ def extended_euclidean(exercise: dict) -> dict:
     }
         
 def extendedEuclidean_raw(a: str, b: str, radix: int) -> tuple[str, str, str]:
-
     "Set up extended Euclidean table values for first two rows"
     r0, r1 = a,b
     x0, y0 = "1", "0"

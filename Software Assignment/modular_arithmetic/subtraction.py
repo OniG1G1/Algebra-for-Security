@@ -26,5 +26,6 @@ def modular_subtraction(exercise: dict) -> dict:
     return {"answer": answer}
 
 def modular_subtract_raw(x_: str, y_: str, radix: int, m: str) -> str:
+    if compare_numbers(m, "1", radix) == -1: return None
     z_ = subtract_raw(x_, y_, radix)
     return mod_raw(z_, m, radix)
