@@ -112,9 +112,6 @@ def multiply(x: str, y: str, radix: int, negative: bool) -> str:
              A leading '-' is prepended if `negative` is True.
     """
 
-    x = x.lstrip("0") or "0" # Do we really need to lstrip(), when do we ever input an inproper zero-padded string
-    y = y.lstrip("0") or "0"
-
     # Quick return if either number is zero
     if x == "0" or y == "0":
         return "0"
@@ -150,14 +147,31 @@ def multiply(x: str, y: str, radix: int, negative: bool) -> str:
             results.pop(0)
             
     result = results[0]
-    
-    result = results[0].lstrip("0") or "0"
-    
+    # Strip leading zeros
+    result = result.lstrip("0") or "0" #So basically I don't know if this is needed... have not found a case in which this is needed, for this OR karatsuba
+
     return "-" + result if negative else result
 
 def karatsuba(x: str, y: str, radix: int, negative: bool) -> str:
-    x = x.lstrip("0") or "0" # Again, do we REALLY need to lstrip(), when do we ever input an inproper zero-padded string
-    y = y.lstrip("0") or "0"
+    """
+    TODO
+    Performs digit-wise multiplication of two numbers in a given radix.
+
+    Implements karatsuba multiplication:
+    - Each digit of `x` is multiplied by each digit of `y`.
+    - Carries are propagated properly.
+    - Intermediate results are summed using the `add` function.
+
+    Args:
+        x (str): First number as a string.
+        y (str): Second number as a string.
+        radix (int): Base of the numbers.
+        negative (bool): Whether the result should be negative.
+
+    Returns:
+        str: The multiplication result as a string, with leading zeros removed.
+             A leading '-' is prepended if `negative` is True.
+    """
 
     if x == "0" or y == "0":
         return "0"
@@ -165,14 +179,22 @@ def karatsuba(x: str, y: str, radix: int, negative: bool) -> str:
     x, y = zero_padding(x, y)
     n = len(x)
     m = (n + 1) // 2
+
+    # TODO
     z0 = multiply(x[m:], y[m:], radix, False)
     z2 = multiply(x[:m], y[:m], radix, False)
+
+    # TODO
     left_factor = add(x[m:], x[:m], radix, False)
     right_factor = add(y[m:], y[:m], radix, False)
     z1 = subtract(multiply(left_factor, right_factor, radix, False), add(z0, z2, radix, False), radix, False)
     z1 = z1 + (n-m) * "0"
     z2 = z2 + 2 * (n-m) * "0"
+
     result = add(add(z0, z1, radix, False), z2, radix, False)
+    # Strip leading zeros
+    result = result.lstrip("0") or "0"
+
     return "-" + result if negative else result
 
 def divideRemainder(x: str, y: str, radix: int, negative: bool) -> str:

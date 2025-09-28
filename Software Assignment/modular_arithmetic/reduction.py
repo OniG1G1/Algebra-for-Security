@@ -1,6 +1,7 @@
 from modular.core import modularReduction
 from integer_arithmetic.multiplication import multiply_raw 
 from integer_arithmetic.subtraction import subtract_raw 
+from integer_arithmetic.addition import add_raw 
 from arithmetic.utils import compare_numbers
 
 class Reduction:
@@ -37,10 +38,9 @@ def reduction(exercise: dict) -> dict:
 def mod_raw(x: str, m: str, radix: int) -> str:
     # Determine the sign of the operand
     sign_x = '-' if x.startswith('-') else '+'
-    
     # Strip signs for digit-wise operations
     x_val = x[1:] if sign_x == '-' else x
-    
+
     k = len(x_val)
     n = len(m)
     
@@ -51,6 +51,6 @@ def mod_raw(x: str, m: str, radix: int) -> str:
             x_val = subtract_raw(x_val,mb_i,radix)
     
     if ((compare_numbers(x, "0", radix) > -1) or (compare_numbers(x_val, "0", radix) == 0)):
-        return x_val
+        return subtract_raw(m, x_val, radix) if sign_x == '-' else x_val
     else:
         return subtract_raw(m, x_val, radix)  
