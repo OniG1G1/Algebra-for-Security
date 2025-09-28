@@ -4,8 +4,19 @@ from arithmetic.utils import compare_numbers
 
 def modular_addition(exercise: dict) -> dict:
     """
-    TODO
-    """
+    Main entry point for the modular addition operation.
+
+    This function handles sign routing and wraps the final result in a dictionary.
+    It extracts the input numbers and radix from the `exercise` dictionary, 
+    calls `add_raw` to perform the raw computation, then runs modular reduction on that answer
+    and returns a dictionary
+    containing the answer.
+
+    Parameters:
+        exercise (dict): Contains keys 'x', 'y', 'radix', and 'modulus'
+
+    Returns:
+        dict: {"answer": <result_string>}    """
     print("Executing 'addition' operation...")
     
     # Extract input numbers and radix

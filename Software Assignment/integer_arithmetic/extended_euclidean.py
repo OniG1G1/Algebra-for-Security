@@ -5,6 +5,12 @@ from integer_arithmetic.subtraction import subtract_raw
 def extended_euclidean(exercise: dict) -> dict:
     """
     Main entry point for the Extended Euclidean Algorithm. Handles a, b flipping.
+     
+    Parameters:
+        exercise (dict): Contains keys 'x', 'y', and 'radix'
+
+    Returns:
+        dict: {"answer": <result_string>}
     """
     
     print("Executing 'extended euclidean algorithm' operation...")
