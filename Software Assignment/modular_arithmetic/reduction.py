@@ -37,6 +37,9 @@ def reduction(exercise: dict) -> dict:
 
 
 def mod_raw(x: str, m: str, radix: int) -> str:
+    if m.startswith("-"): return None
+    x = x.lstrip("0") or "0"
+    m = m.lstrip("0") or "0"
     if compare_numbers(m, "1", radix) == -1: return None
     
     # Determine the sign of the operand
