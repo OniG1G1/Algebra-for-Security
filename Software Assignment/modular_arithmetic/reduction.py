@@ -57,6 +57,6 @@ def mod_raw(x: str, m: str, radix: int) -> str:
             x_val = subtract_raw(x_val, mb_i, radix)
     
     if ((compare_numbers(x, "0", radix) > -1) or (compare_numbers(x_val, "0", radix) == 0)):
-        return subtract_raw(m, x_val, radix) if sign_x == '-' else x_val
+        return x_val
     else:
         return subtract_raw(m, x_val, radix)  
