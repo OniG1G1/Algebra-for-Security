@@ -3,9 +3,6 @@ from integer_arithmetic.multiplication import  multiply_raw
 from arithmetic.utils import compare_numbers
 
 def modular_multiplication(exercise: dict) -> dict:
-    """
-    TODO
-    """
     print("Executing 'multiplication' operation...")
     
     # Extract input numbers and radix

@@ -19,9 +19,6 @@ class Reduction:
         return {"answer": result}
 
 def reduction(exercise: dict) -> dict:
-    """
-    TODO
-    """
     print("Executing 'reduction' operation...")
     
     # Extract input numbers and radix
@@ -56,7 +53,7 @@ def mod_raw(x: str, m: str, radix: int) -> str:
         while (compare_numbers(x_val, mb_i,radix) > -1):
             x_val = subtract_raw(x_val, mb_i, radix)
     
-    if ((compare_numbers(x, "0", radix) > -1) or (compare_numbers(x_val, "0", radix) == 0)):
+    if ((sign_x == '+') or (compare_numbers(x_val, "0", radix) == 0)):
         return x_val
     else:
         return subtract_raw(m, x_val, radix)  
